@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<catalog xmlns="urn:oasis:names:tc:entity:xmlns:xml:catalog" prefer="system">
+    <system systemId="http://localhost:8080/WSEasyLogin/WSEasyLogin?wsdl" uri="src/conf/xml-resources/web-service-references/WSEasyLogin/wsdl/localhost_8080/WSEasyLogin/WSEasyLogin.wsdl"/>
+    <system systemId="http://localhost:8080/WSEasyLogin/WSEasyLogin?xsd=1" uri="src/conf/xml-resources/web-service-references/WSEasyLogin/wsdl/localhost_8080/WSEasyLogin/WSEasyLogin.xsd_1.xsd"/>
+    <system systemId="http://192.168.238.158/WSEasyLogin/WSEasyLogin.asmx?WSDL" uri="src/conf/xml-resources/web-service-references/WSEasyLogin/wsdl/192.168.238.158/WSEasyLogin/WSEasyLogin.asmx.wsdl"/>
+    <system systemId="http://192.168.238.158/WSEasyLogin/WSEasyLogin.asmx?schema=DSLogin" uri="src/conf/xml-resources/web-service-references/WSEasyLogin/wsdl/192.168.238.158/WSEasyLogin/WSEasyLogin.asmx.schema_dslogin.xsd"/>
+    <system systemId="http://192.168.238.6/wsloginfarma/wslogin.asmx" uri="src/conf/xml-resources/web-service-references/wslogin/wsdl/192.168.238.6/wsloginfarma/wslogin.asmx"/>
+    <system systemId="http://192.168.238.6/wsloginfarma/wslogin.asmx?wsdl" uri="src/conf/xml-resources/web-service-references/wslogin/wsdl/192.168.238.6/wsloginfarma/wslogin.asmx.wsdl"/>
+</catalog>
