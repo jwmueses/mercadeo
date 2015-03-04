@@ -60,6 +60,11 @@ public class AutoEjecucion {
     private String AUS_USUARIO = "sa";
     private String AUS_CLAVE = "sql";    //    sqlfarma      desarrollo = sql
     
+    private String SEGU_IP = "127.0.0.1";   //  192.168.238.159      desarrollo = 127.0.0.1
+    private int SEGU_PUERTO = 1433;
+    private String SEGU_DB = "EasySeguridad"; // db_ctrlProveedores      desarrollo = EasySeguridad
+    private String SEGU_USUARIO = "sa";
+    private String SEGU_CLAVE = "sql";    //    sqlfarma      desarrollo = sql
     
     private String SVR_MAIL = "mail.farmaenlace.com";
     
@@ -90,6 +95,7 @@ public class AutoEjecucion {
         BaseDatos objProveedores = new BaseDatos(this.DEPR_IP, this.DEPR_PUERTO, this.DEPR_DB, this.DEPR_USUARIO, this.DEPR_CLAVE);
         BaseDatos objAus = new BaseDatos(this.AUS_IP, this.AUS_PUERTO, this.AUS_DB, this.AUS_USUARIO, this.AUS_CLAVE);
         BaseDatos objGene = new BaseDatos(this.GENE_IP, this.GENE_PUERTO, this.GENE_DB, this.GENE_USUARIO, this.GENE_CLAVE);
+        BaseDatos objSegu = new BaseDatos(this.SEGU_IP, this.SEGU_PUERTO, this.SEGU_DB, this.SEGU_USUARIO, this.SEGU_CLAVE);
         
         try{
             // planes de mercadeo con auspicios confirmados
@@ -135,10 +141,20 @@ public class AutoEjecucion {
                                     String para_comercial = objConfiguracion.getValor("mail_comercial");
                                     objConfiguracion.cerrar();
                                     
+                                    String cedula="";
+                                    try{
+                                        ResultSet rsUsuario = objSegu.consulta("select Cedula from Usuarios with (nolock) where NombreCorto='"+usuario+"'");
+                                        if(rsUsuario.next()){
+                                            cedula = rsUsuario.getString("Cedula")!=null ? rsUsuario.getString("Cedula") : "";
+                                        }
+                                    }catch(Exception e){
+                                        e.printStackTrace();
+                                    }
+                                    
                                     String empleado = "";
                                     String cargo = "";
                                     try{
-                                //    FALTA EL CARGO DEL EMPELADO
+                                    //    FALTA EL CARGO DEL EMPELADO
                                         ResultSet rsEmpleado = objGene.consulta("select E.NOMBRES, E.APELLIDOS, C.DESCRIPCION "
                                                 + "from (EMPLEADOS as E with (nolock) inner join CARGOS as C with (nolock) on E.CODIGO_CARGO=C.CODIGO_CARGO) "
                                                 + "inner join CENTROS_COSTOS as CC with(nolock) on CC.CODIGO_CENTRO_COSTO=E.CODIGO_CENTRO_COSTO "
@@ -193,6 +209,7 @@ public class AutoEjecucion {
             objGene.cerrar();
             objAus.cerrar();
             objProveedores.cerrar();
+            objSegu.cerrar();
             objPlanMercadeo.cerrar();
         }
     }
