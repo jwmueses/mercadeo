@@ -1,0 +1,1285 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:tm="http://microsoft.com/wsdl/mime/textMatching/" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/" xmlns:tns="http://tempuri.org/" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:s="http://www.w3.org/2001/XMLSchema" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" xmlns:http="http://schemas.xmlsoap.org/wsdl/http/" targetNamespace="http://tempuri.org/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:types>
+    <s:schema elementFormDefault="qualified" targetNamespace="http://tempuri.org/">
+      <s:import namespace="http://tempuri.org/DSLogin.xsd" />
+      <s:import schemaLocation="http://192.168.238.158/WSEasyLogin/WSEasyLogin.asmx?schema=DSLogin" namespace="http://tempuri.org/DSLogin.xsd" />
+      <s:element name="GetParametroAccessPoint">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="aplicacion" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="entrada" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetParametroAccessPointResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetParametroAccessPointResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetCredentialsFromIni">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="user" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="password" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="path" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetCredentialsFromIniResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="user" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="password" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="path" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="Authenticate">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="userName" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="password" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="mensaje" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="_ADPath" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="_ADUser" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="_ADPassword" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="AuthenticateResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="AuthenticateResult" type="s:boolean" />
+            <s:element minOccurs="0" maxOccurs="1" name="mensaje" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="AuthenticateByAlias">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="Alias" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="password" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="mensaje" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="dsLogin">
+              <s:complexType>
+                <s:sequence>
+                  <s:any namespace="http://tempuri.org/DSLogin.xsd" />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+            <s:element minOccurs="0" maxOccurs="1" name="Aplicacion" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="strHostAddress" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="AuthenticateByAliasResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="AuthenticateByAliasResult" type="s:boolean" />
+            <s:element minOccurs="0" maxOccurs="1" name="mensaje" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="dsLogin">
+              <s:complexType>
+                <s:sequence>
+                  <s:any namespace="http://tempuri.org/DSLogin.xsd" />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="ChangePasswordExpired">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="_ADPath" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="UserName" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="PasswordAnterior" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="NuevoPassword" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="mensaje" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="_ADUser" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="_ADPassword" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="ChangePasswordExpiredResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="ChangePasswordExpiredResult" type="s:boolean" />
+            <s:element minOccurs="0" maxOccurs="1" name="mensaje" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="ChangeUserPassword">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="strServidor" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="UserName" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Password" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="_ADPath" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="_ADUser" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="_ADPassword" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="_prefijo" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="_orgunit" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="_cashGroup" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="ChangeUserPasswordResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="ChangeUserPasswordResult" type="s:boolean" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="ChangePasswordUpdateUserData">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="dsLogin">
+              <s:complexType>
+                <s:sequence>
+                  <s:any namespace="http://tempuri.org/DSLogin.xsd" />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+            <s:element minOccurs="0" maxOccurs="1" name="Password" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="NewPassword" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="result" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="IP" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="AppCod" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="ChangePasswordUpdateUserDataResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="ChangePasswordUpdateUserDataResult" type="s:boolean" />
+            <s:element minOccurs="0" maxOccurs="1" name="dsLogin">
+              <s:complexType>
+                <s:sequence>
+                  <s:any namespace="http://tempuri.org/DSLogin.xsd" />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+            <s:element minOccurs="0" maxOccurs="1" name="result" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="TieneCambioClave">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="nombrecorto" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="TieneCambioClaveResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="TieneCambioClaveResult" type="s:boolean" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="SetCambioClave">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="nombrecorto" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="SetCambioClaveResponse">
+        <s:complexType />
+      </s:element>
+      <s:element name="GeneraToken">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="Aplicacion" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="UserName" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="IP" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GeneraTokenResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GeneraTokenResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="VerificaToken">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="tokenencriptado" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Aplicacion" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="IP" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="VerificaTokenResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="VerificaTokenResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="getUserByNombreCorto">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="NombreCorto" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="dsLogin">
+              <s:complexType>
+                <s:sequence>
+                  <s:any namespace="http://tempuri.org/DSLogin.xsd" />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="getUserByNombreCortoResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="dsLogin">
+              <s:complexType>
+                <s:sequence>
+                  <s:any namespace="http://tempuri.org/DSLogin.xsd" />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="getUserByAlias">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="Alias" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="dsLogin">
+              <s:complexType>
+                <s:sequence>
+                  <s:any namespace="http://tempuri.org/DSLogin.xsd" />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="getUserByAliasResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="dsLogin">
+              <s:complexType>
+                <s:sequence>
+                  <s:any namespace="http://tempuri.org/DSLogin.xsd" />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="getPreguntas">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="NombreCorto" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="dsLogin">
+              <s:complexType>
+                <s:sequence>
+                  <s:any namespace="http://tempuri.org/DSLogin.xsd" />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="getPreguntasResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="dsLogin">
+              <s:complexType>
+                <s:sequence>
+                  <s:any namespace="http://tempuri.org/DSLogin.xsd" />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="getPreguntasToUnlock">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="mensaje" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="dsLogin">
+              <s:complexType>
+                <s:sequence>
+                  <s:any namespace="http://tempuri.org/DSLogin.xsd" />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="getPreguntasToUnlockResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="mensaje" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="dsLogin">
+              <s:complexType>
+                <s:sequence>
+                  <s:any namespace="http://tempuri.org/DSLogin.xsd" />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="getPreguntasByMissingPassword">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="Alias" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="mensaje" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="dsLogin">
+              <s:complexType>
+                <s:sequence>
+                  <s:any namespace="http://tempuri.org/DSLogin.xsd" />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="getPreguntasByMissingPasswordResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="mensaje" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="dsLogin">
+              <s:complexType>
+                <s:sequence>
+                  <s:any namespace="http://tempuri.org/DSLogin.xsd" />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GrabarPreguntasUsuario">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="dsLogin">
+              <s:complexType>
+                <s:sequence>
+                  <s:any namespace="http://tempuri.org/DSLogin.xsd" />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+            <s:element minOccurs="0" maxOccurs="1" name="IP" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GrabarPreguntasUsuarioResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="GrabarPreguntasUsuarioResult" type="s:boolean" />
+            <s:element minOccurs="0" maxOccurs="1" name="dsLogin">
+              <s:complexType>
+                <s:sequence>
+                  <s:any namespace="http://tempuri.org/DSLogin.xsd" />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="UpdateUserData_SaveQuestions">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="dsLogin">
+              <s:complexType>
+                <s:sequence>
+                  <s:any namespace="http://tempuri.org/DSLogin.xsd" />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+            <s:element minOccurs="0" maxOccurs="1" name="IP" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="UpdateUserData_SaveQuestionsResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="UpdateUserData_SaveQuestionsResult" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="dsLogin">
+              <s:complexType>
+                <s:sequence>
+                  <s:any namespace="http://tempuri.org/DSLogin.xsd" />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="VerificarRespuestasUsuario">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="NombreCorto" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="dsLogin">
+              <s:complexType>
+                <s:sequence>
+                  <s:any namespace="http://tempuri.org/DSLogin.xsd" />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="VerificarRespuestasUsuarioResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="VerificarRespuestasUsuarioResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="SolicitarNuevaClave">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="NombreCorto" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="dsLogin">
+              <s:complexType>
+                <s:sequence>
+                  <s:any namespace="http://tempuri.org/DSLogin.xsd" />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+            <s:element minOccurs="0" maxOccurs="1" name="IP" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="AppCod" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="SolicitarNuevaClaveResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="SolicitarNuevaClaveResult" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="dsLogin">
+              <s:complexType>
+                <s:sequence>
+                  <s:any namespace="http://tempuri.org/DSLogin.xsd" />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="DesbloquearUsuario">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="NombreCorto" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="dsLogin">
+              <s:complexType>
+                <s:sequence>
+                  <s:any namespace="http://tempuri.org/DSLogin.xsd" />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+            <s:element minOccurs="0" maxOccurs="1" name="IP" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="AppCod" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="DesbloquearUsuarioResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="DesbloquearUsuarioResult" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="dsLogin">
+              <s:complexType>
+                <s:sequence>
+                  <s:any namespace="http://tempuri.org/DSLogin.xsd" />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="Unlock">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="NombreCorto" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="_ADPath" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="_ADUser" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="_ADPassword" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="AppCod" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="HostAddress" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="UnlockResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="UnlockResult" type="s:boolean" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="UpdateUserData">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="NombreCorto" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Alias" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Email" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Celular" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="UpdateUserDataResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="UpdateUserDataResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="ControlAccesoMultiple">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="nombreAplicacion" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="nombreCorto" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="direccionIP" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="existeInstanciaPrevia" type="s:boolean" />
+            <s:element minOccurs="0" maxOccurs="1" name="mensaje" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="ControlAccesoMultipleResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="ControlAccesoMultipleResult" type="s:boolean" />
+            <s:element minOccurs="0" maxOccurs="1" name="mensaje" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="RegistrarLogoff">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="nombreAplicacion" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="nombreCorto" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="direccionIP" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="RegistrarLogoffResponse">
+        <s:complexType />
+      </s:element>
+    </s:schema>
+  </wsdl:types>
+  <wsdl:message name="GetParametroAccessPointSoapIn">
+    <wsdl:part name="parameters" element="tns:GetParametroAccessPoint" />
+  </wsdl:message>
+  <wsdl:message name="GetParametroAccessPointSoapOut">
+    <wsdl:part name="parameters" element="tns:GetParametroAccessPointResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetCredentialsFromIniSoapIn">
+    <wsdl:part name="parameters" element="tns:GetCredentialsFromIni" />
+  </wsdl:message>
+  <wsdl:message name="GetCredentialsFromIniSoapOut">
+    <wsdl:part name="parameters" element="tns:GetCredentialsFromIniResponse" />
+  </wsdl:message>
+  <wsdl:message name="AuthenticateSoapIn">
+    <wsdl:part name="parameters" element="tns:Authenticate" />
+  </wsdl:message>
+  <wsdl:message name="AuthenticateSoapOut">
+    <wsdl:part name="parameters" element="tns:AuthenticateResponse" />
+  </wsdl:message>
+  <wsdl:message name="AuthenticateByAliasSoapIn">
+    <wsdl:part name="parameters" element="tns:AuthenticateByAlias" />
+  </wsdl:message>
+  <wsdl:message name="AuthenticateByAliasSoapOut">
+    <wsdl:part name="parameters" element="tns:AuthenticateByAliasResponse" />
+  </wsdl:message>
+  <wsdl:message name="ChangePasswordExpiredSoapIn">
+    <wsdl:part name="parameters" element="tns:ChangePasswordExpired" />
+  </wsdl:message>
+  <wsdl:message name="ChangePasswordExpiredSoapOut">
+    <wsdl:part name="parameters" element="tns:ChangePasswordExpiredResponse" />
+  </wsdl:message>
+  <wsdl:message name="ChangeUserPasswordSoapIn">
+    <wsdl:part name="parameters" element="tns:ChangeUserPassword" />
+  </wsdl:message>
+  <wsdl:message name="ChangeUserPasswordSoapOut">
+    <wsdl:part name="parameters" element="tns:ChangeUserPasswordResponse" />
+  </wsdl:message>
+  <wsdl:message name="ChangePasswordUpdateUserDataSoapIn">
+    <wsdl:part name="parameters" element="tns:ChangePasswordUpdateUserData" />
+  </wsdl:message>
+  <wsdl:message name="ChangePasswordUpdateUserDataSoapOut">
+    <wsdl:part name="parameters" element="tns:ChangePasswordUpdateUserDataResponse" />
+  </wsdl:message>
+  <wsdl:message name="TieneCambioClaveSoapIn">
+    <wsdl:part name="parameters" element="tns:TieneCambioClave" />
+  </wsdl:message>
+  <wsdl:message name="TieneCambioClaveSoapOut">
+    <wsdl:part name="parameters" element="tns:TieneCambioClaveResponse" />
+  </wsdl:message>
+  <wsdl:message name="SetCambioClaveSoapIn">
+    <wsdl:part name="parameters" element="tns:SetCambioClave" />
+  </wsdl:message>
+  <wsdl:message name="SetCambioClaveSoapOut">
+    <wsdl:part name="parameters" element="tns:SetCambioClaveResponse" />
+  </wsdl:message>
+  <wsdl:message name="GeneraTokenSoapIn">
+    <wsdl:part name="parameters" element="tns:GeneraToken" />
+  </wsdl:message>
+  <wsdl:message name="GeneraTokenSoapOut">
+    <wsdl:part name="parameters" element="tns:GeneraTokenResponse" />
+  </wsdl:message>
+  <wsdl:message name="VerificaTokenSoapIn">
+    <wsdl:part name="parameters" element="tns:VerificaToken" />
+  </wsdl:message>
+  <wsdl:message name="VerificaTokenSoapOut">
+    <wsdl:part name="parameters" element="tns:VerificaTokenResponse" />
+  </wsdl:message>
+  <wsdl:message name="getUserByNombreCortoSoapIn">
+    <wsdl:part name="parameters" element="tns:getUserByNombreCorto" />
+  </wsdl:message>
+  <wsdl:message name="getUserByNombreCortoSoapOut">
+    <wsdl:part name="parameters" element="tns:getUserByNombreCortoResponse" />
+  </wsdl:message>
+  <wsdl:message name="getUserByAliasSoapIn">
+    <wsdl:part name="parameters" element="tns:getUserByAlias" />
+  </wsdl:message>
+  <wsdl:message name="getUserByAliasSoapOut">
+    <wsdl:part name="parameters" element="tns:getUserByAliasResponse" />
+  </wsdl:message>
+  <wsdl:message name="getPreguntasSoapIn">
+    <wsdl:part name="parameters" element="tns:getPreguntas" />
+  </wsdl:message>
+  <wsdl:message name="getPreguntasSoapOut">
+    <wsdl:part name="parameters" element="tns:getPreguntasResponse" />
+  </wsdl:message>
+  <wsdl:message name="getPreguntasToUnlockSoapIn">
+    <wsdl:part name="parameters" element="tns:getPreguntasToUnlock" />
+  </wsdl:message>
+  <wsdl:message name="getPreguntasToUnlockSoapOut">
+    <wsdl:part name="parameters" element="tns:getPreguntasToUnlockResponse" />
+  </wsdl:message>
+  <wsdl:message name="getPreguntasByMissingPasswordSoapIn">
+    <wsdl:part name="parameters" element="tns:getPreguntasByMissingPassword" />
+  </wsdl:message>
+  <wsdl:message name="getPreguntasByMissingPasswordSoapOut">
+    <wsdl:part name="parameters" element="tns:getPreguntasByMissingPasswordResponse" />
+  </wsdl:message>
+  <wsdl:message name="GrabarPreguntasUsuarioSoapIn">
+    <wsdl:part name="parameters" element="tns:GrabarPreguntasUsuario" />
+  </wsdl:message>
+  <wsdl:message name="GrabarPreguntasUsuarioSoapOut">
+    <wsdl:part name="parameters" element="tns:GrabarPreguntasUsuarioResponse" />
+  </wsdl:message>
+  <wsdl:message name="UpdateUserData_SaveQuestionsSoapIn">
+    <wsdl:part name="parameters" element="tns:UpdateUserData_SaveQuestions" />
+  </wsdl:message>
+  <wsdl:message name="UpdateUserData_SaveQuestionsSoapOut">
+    <wsdl:part name="parameters" element="tns:UpdateUserData_SaveQuestionsResponse" />
+  </wsdl:message>
+  <wsdl:message name="VerificarRespuestasUsuarioSoapIn">
+    <wsdl:part name="parameters" element="tns:VerificarRespuestasUsuario" />
+  </wsdl:message>
+  <wsdl:message name="VerificarRespuestasUsuarioSoapOut">
+    <wsdl:part name="parameters" element="tns:VerificarRespuestasUsuarioResponse" />
+  </wsdl:message>
+  <wsdl:message name="SolicitarNuevaClaveSoapIn">
+    <wsdl:part name="parameters" element="tns:SolicitarNuevaClave" />
+  </wsdl:message>
+  <wsdl:message name="SolicitarNuevaClaveSoapOut">
+    <wsdl:part name="parameters" element="tns:SolicitarNuevaClaveResponse" />
+  </wsdl:message>
+  <wsdl:message name="DesbloquearUsuarioSoapIn">
+    <wsdl:part name="parameters" element="tns:DesbloquearUsuario" />
+  </wsdl:message>
+  <wsdl:message name="DesbloquearUsuarioSoapOut">
+    <wsdl:part name="parameters" element="tns:DesbloquearUsuarioResponse" />
+  </wsdl:message>
+  <wsdl:message name="UnlockSoapIn">
+    <wsdl:part name="parameters" element="tns:Unlock" />
+  </wsdl:message>
+  <wsdl:message name="UnlockSoapOut">
+    <wsdl:part name="parameters" element="tns:UnlockResponse" />
+  </wsdl:message>
+  <wsdl:message name="UpdateUserDataSoapIn">
+    <wsdl:part name="parameters" element="tns:UpdateUserData" />
+  </wsdl:message>
+  <wsdl:message name="UpdateUserDataSoapOut">
+    <wsdl:part name="parameters" element="tns:UpdateUserDataResponse" />
+  </wsdl:message>
+  <wsdl:message name="ControlAccesoMultipleSoapIn">
+    <wsdl:part name="parameters" element="tns:ControlAccesoMultiple" />
+  </wsdl:message>
+  <wsdl:message name="ControlAccesoMultipleSoapOut">
+    <wsdl:part name="parameters" element="tns:ControlAccesoMultipleResponse" />
+  </wsdl:message>
+  <wsdl:message name="RegistrarLogoffSoapIn">
+    <wsdl:part name="parameters" element="tns:RegistrarLogoff" />
+  </wsdl:message>
+  <wsdl:message name="RegistrarLogoffSoapOut">
+    <wsdl:part name="parameters" element="tns:RegistrarLogoffResponse" />
+  </wsdl:message>
+  <wsdl:portType name="WSEasyLoginSoap">
+    <wsdl:operation name="GetParametroAccessPoint">
+      <wsdl:input message="tns:GetParametroAccessPointSoapIn" />
+      <wsdl:output message="tns:GetParametroAccessPointSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetCredentialsFromIni">
+      <wsdl:input message="tns:GetCredentialsFromIniSoapIn" />
+      <wsdl:output message="tns:GetCredentialsFromIniSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="Authenticate">
+      <wsdl:input message="tns:AuthenticateSoapIn" />
+      <wsdl:output message="tns:AuthenticateSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="AuthenticateByAlias">
+      <wsdl:input message="tns:AuthenticateByAliasSoapIn" />
+      <wsdl:output message="tns:AuthenticateByAliasSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="ChangePasswordExpired">
+      <wsdl:input message="tns:ChangePasswordExpiredSoapIn" />
+      <wsdl:output message="tns:ChangePasswordExpiredSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="ChangeUserPassword">
+      <wsdl:input message="tns:ChangeUserPasswordSoapIn" />
+      <wsdl:output message="tns:ChangeUserPasswordSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="ChangePasswordUpdateUserData">
+      <wsdl:input message="tns:ChangePasswordUpdateUserDataSoapIn" />
+      <wsdl:output message="tns:ChangePasswordUpdateUserDataSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="TieneCambioClave">
+      <wsdl:input message="tns:TieneCambioClaveSoapIn" />
+      <wsdl:output message="tns:TieneCambioClaveSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="SetCambioClave">
+      <wsdl:input message="tns:SetCambioClaveSoapIn" />
+      <wsdl:output message="tns:SetCambioClaveSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GeneraToken">
+      <wsdl:input message="tns:GeneraTokenSoapIn" />
+      <wsdl:output message="tns:GeneraTokenSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="VerificaToken">
+      <wsdl:input message="tns:VerificaTokenSoapIn" />
+      <wsdl:output message="tns:VerificaTokenSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="getUserByNombreCorto">
+      <wsdl:input message="tns:getUserByNombreCortoSoapIn" />
+      <wsdl:output message="tns:getUserByNombreCortoSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="getUserByAlias">
+      <wsdl:input message="tns:getUserByAliasSoapIn" />
+      <wsdl:output message="tns:getUserByAliasSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="getPreguntas">
+      <wsdl:input message="tns:getPreguntasSoapIn" />
+      <wsdl:output message="tns:getPreguntasSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="getPreguntasToUnlock">
+      <wsdl:input message="tns:getPreguntasToUnlockSoapIn" />
+      <wsdl:output message="tns:getPreguntasToUnlockSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="getPreguntasByMissingPassword">
+      <wsdl:input message="tns:getPreguntasByMissingPasswordSoapIn" />
+      <wsdl:output message="tns:getPreguntasByMissingPasswordSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GrabarPreguntasUsuario">
+      <wsdl:input message="tns:GrabarPreguntasUsuarioSoapIn" />
+      <wsdl:output message="tns:GrabarPreguntasUsuarioSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="UpdateUserData_SaveQuestions">
+      <wsdl:input message="tns:UpdateUserData_SaveQuestionsSoapIn" />
+      <wsdl:output message="tns:UpdateUserData_SaveQuestionsSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="VerificarRespuestasUsuario">
+      <wsdl:input message="tns:VerificarRespuestasUsuarioSoapIn" />
+      <wsdl:output message="tns:VerificarRespuestasUsuarioSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="SolicitarNuevaClave">
+      <wsdl:input message="tns:SolicitarNuevaClaveSoapIn" />
+      <wsdl:output message="tns:SolicitarNuevaClaveSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="DesbloquearUsuario">
+      <wsdl:input message="tns:DesbloquearUsuarioSoapIn" />
+      <wsdl:output message="tns:DesbloquearUsuarioSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="Unlock">
+      <wsdl:input message="tns:UnlockSoapIn" />
+      <wsdl:output message="tns:UnlockSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="UpdateUserData">
+      <wsdl:input message="tns:UpdateUserDataSoapIn" />
+      <wsdl:output message="tns:UpdateUserDataSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="ControlAccesoMultiple">
+      <wsdl:input message="tns:ControlAccesoMultipleSoapIn" />
+      <wsdl:output message="tns:ControlAccesoMultipleSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="RegistrarLogoff">
+      <wsdl:input message="tns:RegistrarLogoffSoapIn" />
+      <wsdl:output message="tns:RegistrarLogoffSoapOut" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="WSEasyLoginSoap" type="tns:WSEasyLoginSoap">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="GetParametroAccessPoint">
+      <soap:operation soapAction="http://tempuri.org/GetParametroAccessPoint" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetCredentialsFromIni">
+      <soap:operation soapAction="http://tempuri.org/GetCredentialsFromIni" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Authenticate">
+      <soap:operation soapAction="http://tempuri.org/Authenticate" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="AuthenticateByAlias">
+      <soap:operation soapAction="http://tempuri.org/AuthenticateByAlias" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ChangePasswordExpired">
+      <soap:operation soapAction="http://tempuri.org/ChangePasswordExpired" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ChangeUserPassword">
+      <soap:operation soapAction="http://tempuri.org/ChangeUserPassword" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ChangePasswordUpdateUserData">
+      <soap:operation soapAction="http://tempuri.org/ChangePasswordUpdateUserData" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="TieneCambioClave">
+      <soap:operation soapAction="http://tempuri.org/TieneCambioClave" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SetCambioClave">
+      <soap:operation soapAction="http://tempuri.org/SetCambioClave" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GeneraToken">
+      <soap:operation soapAction="http://tempuri.org/GeneraToken" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="VerificaToken">
+      <soap:operation soapAction="http://tempuri.org/VerificaToken" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getUserByNombreCorto">
+      <soap:operation soapAction="http://tempuri.org/getUserByNombreCorto" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getUserByAlias">
+      <soap:operation soapAction="http://tempuri.org/getUserByAlias" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getPreguntas">
+      <soap:operation soapAction="http://tempuri.org/getPreguntas" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getPreguntasToUnlock">
+      <soap:operation soapAction="http://tempuri.org/getPreguntasToUnlock" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getPreguntasByMissingPassword">
+      <soap:operation soapAction="http://tempuri.org/getPreguntasByMissingPassword" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GrabarPreguntasUsuario">
+      <soap:operation soapAction="http://tempuri.org/GrabarPreguntasUsuario" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UpdateUserData_SaveQuestions">
+      <soap:operation soapAction="http://tempuri.org/UpdateUserData_SaveQuestions" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="VerificarRespuestasUsuario">
+      <soap:operation soapAction="http://tempuri.org/VerificarRespuestasUsuario" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SolicitarNuevaClave">
+      <soap:operation soapAction="http://tempuri.org/SolicitarNuevaClave" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DesbloquearUsuario">
+      <soap:operation soapAction="http://tempuri.org/DesbloquearUsuario" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Unlock">
+      <soap:operation soapAction="http://tempuri.org/Unlock" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UpdateUserData">
+      <soap:operation soapAction="http://tempuri.org/UpdateUserData" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ControlAccesoMultiple">
+      <soap:operation soapAction="http://tempuri.org/ControlAccesoMultiple" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="RegistrarLogoff">
+      <soap:operation soapAction="http://tempuri.org/RegistrarLogoff" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="WSEasyLoginSoap12" type="tns:WSEasyLoginSoap">
+    <soap12:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="GetParametroAccessPoint">
+      <soap12:operation soapAction="http://tempuri.org/GetParametroAccessPoint" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetCredentialsFromIni">
+      <soap12:operation soapAction="http://tempuri.org/GetCredentialsFromIni" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Authenticate">
+      <soap12:operation soapAction="http://tempuri.org/Authenticate" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="AuthenticateByAlias">
+      <soap12:operation soapAction="http://tempuri.org/AuthenticateByAlias" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ChangePasswordExpired">
+      <soap12:operation soapAction="http://tempuri.org/ChangePasswordExpired" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ChangeUserPassword">
+      <soap12:operation soapAction="http://tempuri.org/ChangeUserPassword" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ChangePasswordUpdateUserData">
+      <soap12:operation soapAction="http://tempuri.org/ChangePasswordUpdateUserData" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="TieneCambioClave">
+      <soap12:operation soapAction="http://tempuri.org/TieneCambioClave" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SetCambioClave">
+      <soap12:operation soapAction="http://tempuri.org/SetCambioClave" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GeneraToken">
+      <soap12:operation soapAction="http://tempuri.org/GeneraToken" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="VerificaToken">
+      <soap12:operation soapAction="http://tempuri.org/VerificaToken" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getUserByNombreCorto">
+      <soap12:operation soapAction="http://tempuri.org/getUserByNombreCorto" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getUserByAlias">
+      <soap12:operation soapAction="http://tempuri.org/getUserByAlias" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getPreguntas">
+      <soap12:operation soapAction="http://tempuri.org/getPreguntas" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getPreguntasToUnlock">
+      <soap12:operation soapAction="http://tempuri.org/getPreguntasToUnlock" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getPreguntasByMissingPassword">
+      <soap12:operation soapAction="http://tempuri.org/getPreguntasByMissingPassword" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GrabarPreguntasUsuario">
+      <soap12:operation soapAction="http://tempuri.org/GrabarPreguntasUsuario" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UpdateUserData_SaveQuestions">
+      <soap12:operation soapAction="http://tempuri.org/UpdateUserData_SaveQuestions" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="VerificarRespuestasUsuario">
+      <soap12:operation soapAction="http://tempuri.org/VerificarRespuestasUsuario" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SolicitarNuevaClave">
+      <soap12:operation soapAction="http://tempuri.org/SolicitarNuevaClave" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DesbloquearUsuario">
+      <soap12:operation soapAction="http://tempuri.org/DesbloquearUsuario" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Unlock">
+      <soap12:operation soapAction="http://tempuri.org/Unlock" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UpdateUserData">
+      <soap12:operation soapAction="http://tempuri.org/UpdateUserData" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ControlAccesoMultiple">
+      <soap12:operation soapAction="http://tempuri.org/ControlAccesoMultiple" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="RegistrarLogoff">
+      <soap12:operation soapAction="http://tempuri.org/RegistrarLogoff" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="WSEasyLogin">
+    <wsdl:port name="WSEasyLoginSoap" binding="tns:WSEasyLoginSoap">
+      <soap:address location="http://192.168.238.158/WSEasyLogin/WSEasyLogin.asmx" />
+    </wsdl:port>
+    <wsdl:port name="WSEasyLoginSoap12" binding="tns:WSEasyLoginSoap12">
+      <soap12:address location="http://192.168.238.158/WSEasyLogin/WSEasyLogin.asmx" />
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>
