@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns="http://tempuri.org/DSLogin.xsd" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" xmlns:mstns="http://tempuri.org/DSLogin.xsd" attributeFormDefault="qualified" elementFormDefault="qualified" targetNamespace="http://tempuri.org/DSLogin.xsd" id="DSLogin" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:element msdata:IsDataSet="true" msdata:UseCurrentLocale="true" name="DSLogin">
+    <xs:complexType>
+      <xs:choice minOccurs="0" maxOccurs="unbounded">
+        <xs:element name="Usuario_Preguntas_Desafio">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element msdata:ReadOnly="true" name="NombreCorto" type="xs:string" />
+              <xs:element msdata:ReadOnly="true" name="Numero_Pregunta" type="xs:unsignedByte" />
+              <xs:element default="" name="Pregunta" type="xs:string" />
+              <xs:element default="" name="Respuesta" type="xs:string" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="Usuarios">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element msdata:ReadOnly="true" name="NombreCorto" type="xs:string" />
+              <xs:element minOccurs="0" name="Alias" type="xs:string" />
+              <xs:element minOccurs="0" name="Email" type="xs:string" />
+              <xs:element minOccurs="0" name="Celular" type="xs:string" />
+              <xs:element msdata:ReadOnly="true" name="Id_Persona" type="xs:long" />
+              <xs:element msdata:ReadOnly="true" default="Habilitado" name="Estado" type="xs:string" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+      </xs:choice>
+    </xs:complexType>
+    <xs:unique msdata:PrimaryKey="true" name="Usuario_Preguntas_DesafioKey1">
+      <xs:selector xpath=".//mstns:Usuario_Preguntas_Desafio" />
+      <xs:field xpath="mstns:NombreCorto" />
+      <xs:field xpath="mstns:Numero_Pregunta" />
+    </xs:unique>
+    <xs:unique msdata:PrimaryKey="true" name="Constraint2">
+      <xs:selector xpath=".//mstns:Usuarios" />
+      <xs:field xpath="mstns:NombreCorto" />
+    </xs:unique>
+  </xs:element>
+  <xs:annotation>
+    <xs:appinfo>
+      <msdata:Relationship name="Usuarios_Usuario_Preguntas_Desafio" msdata:parent="Usuarios" msdata:child="Usuario_Preguntas_Desafio" msdata:parentkey="NombreCorto" msdata:childkey="NombreCorto" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" />
+    </xs:appinfo>
+  </xs:annotation>
+</xs:schema>
