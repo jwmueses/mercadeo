@@ -355,14 +355,23 @@ public class AutoEjecucion {
                 }catch(Exception e){}
                 
                 
+                float sumBase_12 = 0;
+                float sumBase_0 = 0;
+                float sumIva = 0;
                 float sumGastos = 0;
                 try{
-                    ResultSet rsGastos = objPlanMercadeo.consulta("select case when sum(total)>0 then sum(total) else 0 end " +
+                    ResultSet rsGastos = objPlanMercadeo.consulta("select case when sum(base_12)>0 then sum(base_12) else 0 end as base_12, "+ 
+                        "case when sum(base_0)>0 then sum(base_0) else 0 end as base_0, " +
+                        "case when sum(iva)>0 then sum(iva) else 0 end as iva, " +
+                        "case when sum(total)>0 then sum(total) else 0 end as total " +
                         "from (tbl_estrategia as E with (nolock) inner join tbl_actividad as A on E.id_estrategia=A.id_estrategia) " +
                         "inner join tbl_actividad_compra as C with(nolock) on A.id_actividad=C.id_actividad " +
                         "where E.id_plan_mercadeo="+id_plan_mercadeo);
                     if(rsGastos.next()){
-                        sumGastos = rsGastos.getString(1)!=null ? rsGastos.getFloat(1) : 0;
+                        sumBase_12 = rsGastos.getString("base_12")!=null ? rsGastos.getFloat("base_12") : 0;
+                        sumBase_0 = rsGastos.getString("base_0")!=null ? rsGastos.getFloat("base_0") : 0;
+                        sumIva = rsGastos.getString("iva")!=null ? rsGastos.getFloat("iva") : 0;
+                        sumGastos = rsGastos.getString("total")!=null ? rsGastos.getFloat("total") : 0;
                     }
                 }catch(Exception e){}
                 
@@ -378,11 +387,14 @@ public class AutoEjecucion {
                         int pos = Matriz.enMatriz(planMercadeoFarmacia, idOficina, 0);
                         float pGasto = pos!=-1 ? ( planMercadeoFarmacia[pos][2].compareTo("")!=0 ? Float.parseFloat(planMercadeoFarmacia[pos][2]) : 0 ) : 0;
                         double auspicio = Numero.redondear(pGasto * sumAuspicios / 100);
-                        double gasto = Numero.redondear(pGasto * sumGastos / 100);
+                        double subtotal_12 = Numero.redondear(pGasto * sumBase_12 / 100);
+                        double subtotal_0 = Numero.redondear(pGasto * sumBase_0 / 100);
+                        double iva = Numero.redondear(pGasto * sumGastos / 100);
+                        double gasto = Numero.redondear(pGasto * sumIva / 100);
                         double pCumplimientoGasto = Numero.redondear(gasto * 100 / auspicio);
                         
                         sum_ventas += Float.parseFloat(subtotal);
-                        objPlanMercadeo.setVentasFarmacia(id_plan_mercadeo, idOficina, subtotal, auspicio, gasto, pCumplimientoGasto);
+                        objPlanMercadeo.setVentasFarmacia(id_plan_mercadeo, idOficina, subtotal, auspicio, subtotal_12, subtotal_0, iva, gasto, pCumplimientoGasto);
                     }
                 }catch(Exception e){}
                 
