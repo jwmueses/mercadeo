@@ -718,10 +718,11 @@ public class PlanMercadeo extends BaseDatos {
     
     /*  cierres */
     
-    public boolean setVentasFarmacia(String idPlanMercadeo, String oficina, String ventas, double auspicio, double gasto, double porcentaje_cumplimiento_gasto)
+    public boolean setVentasFarmacia(String idPlanMercadeo, String oficina, String ventas, double auspicio, double subtotal_12, double subtotal_0, double iva, double gasto, double porcentaje_cumplimiento_gasto)
     {
-        return this.ejecutar("update tbl_plan_mercadeo_farmacia set p_ventas_reales="+ventas+", auspicio="+auspicio+", gasto="+gasto+
-                ", porcentaje_cumplimiento_gasto="+porcentaje_cumplimiento_gasto+" where id_plan_mercadeo="+idPlanMercadeo+" and oficina='"+oficina+"'");
+        return this.ejecutar("update tbl_plan_mercadeo_farmacia set p_ventas_reales="+ventas+", auspicio="+auspicio+", subtotal_12="+subtotal_12+
+                ", subtotal_0="+subtotal_0+", iva="+iva+", gasto="+gasto+", porcentaje_cumplimiento_gasto="+porcentaje_cumplimiento_gasto+
+                " where id_plan_mercadeo="+idPlanMercadeo+" and oficina='"+oficina+"'");
     }
     
     public boolean setVentasReales(String idPlanMercadeo, float ventas, double promedio_p_crecimiento, double porcentaje_cumplimiento, 

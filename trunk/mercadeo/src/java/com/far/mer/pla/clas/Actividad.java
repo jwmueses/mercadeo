@@ -358,15 +358,24 @@ public class Actividad extends BaseDatos {
             "where A.id_actividad="+id_actividad);
             
             String id_plan_mercadeo = "-1";
+            String base_12 = "0";
+            String base_0 = "0";
+            String iva = "0";
             String total = "0";
             if(rs.next()){
                 id_plan_mercadeo = rs.getString("id_plan_mercadeo")!=null ? rs.getString("id_plan_mercadeo") : "-1";
-                ResultSet rsTotal = this.consulta("select case when sum(total)>0 then sum(total) else 0 end " +
-                            "from (tbl_estrategia as E with (nolock) inner join tbl_actividad as A on E.id_estrategia=A.id_estrategia) " +
-                            "inner join tbl_actividad_compra as C with(nolock) on A.id_actividad=C.id_actividad " +
-                            "where E.id_plan_mercadeo="+id_plan_mercadeo);
+                ResultSet rsTotal = this.consulta("select case when sum(base_12)>0 then sum(base_12) else 0 end as base_12, "+ 
+                        "case when sum(base_0)>0 then sum(base_0) else 0 end as base_0, " +
+                        "case when sum(iva)>0 then sum(iva) else 0 end as iva, " +
+                        "case when sum(total)>0 then sum(total) else 0 end as total " +
+                        "from (tbl_estrategia as E with (nolock) inner join tbl_actividad as A on E.id_estrategia=A.id_estrategia) " +
+                        "inner join tbl_actividad_compra as C with(nolock) on A.id_actividad=C.id_actividad " +
+                        "where E.id_plan_mercadeo="+id_plan_mercadeo);
                 if(rsTotal.next()){
-                    total = rsTotal.getString(1)!=null ? rsTotal.getString(1) : "0";
+                    base_12 = rsTotal.getString("base_12")!=null ? rsTotal.getString("base_12") : "0";
+                    base_0 = rsTotal.getString("base_0")!=null ? rsTotal.getString("base_0") : "0";
+                    iva = rsTotal.getString("iva")!=null ? rsTotal.getString("iva") : "0";
+                    total = rsTotal.getString("total")!=null ? rsTotal.getString("total") : "0";
                     rsTotal.close();
                 }
                 rs.beforeFirst();
@@ -376,7 +385,11 @@ public class Actividad extends BaseDatos {
                 id_plan_mercadeo = rs.getString("id_plan_mercadeo")!=null ? rs.getString("id_plan_mercadeo") : "-1";
                 String oficina = rs.getString("oficina")!=null ? rs.getString("oficina") : "";
                 String p_gasto = rs.getString("p_gasto")!=null ? rs.getString("p_gasto") : "0";
-                sql.add("update tbl_plan_mercadeo_farmacia set gasto = "+p_gasto+" * "+total+" / 100 "
+                sql.add("update tbl_plan_mercadeo_farmacia set "
+                        + "subtotal_12 = "+p_gasto+" * "+base_12+" / 100, "
+                        + "subtotal_0 = "+p_gasto+" * "+base_0+" / 100 "
+                        + "iva = "+p_gasto+" * "+iva+" / 100 "
+                        + "gasto = "+p_gasto+" * "+total+" / 100 "
                         + "where id_plan_mercadeo="+id_plan_mercadeo+" and oficina='"+oficina+"';");
             }
         }catch(Exception e){
