@@ -958,12 +958,11 @@ public class frmPlanMercadeo extends HttpServlet {
                             + "<input type=\"hidden\" id=\"nomCom"+i+"\" name=\"nomCom"+i+"\" value=\""+nombre_comercial+"\" />"
                             + "<input type=\"text\" class=\"caja\" style=\"width:248px;\" value=\""+nombre_comercial+"\" readonly /></div>");
                             if(modificar && eliminado==0){
-                                out.print("<div class=\"columna\" style=\"width:84px\"><input type=\"text\" class=\"caja\" onkeypress=\"_numero(event)\" id=\"montop"+i+"\" name=\"montop"+i+"\" style=\"width:80px;\" value=\""+monto+"\" readonly /></div>"+
-                                "<div class=\"columna\" style=\"width:84px\"><input type=\"text\" class=\"texto\" id=\"numForm"+i+"\" name=\"numForm"+i+"\" style=\"width:80px\" value=\""+num_formulario+"\" readonly /></div>");
+                                out.print("<div class=\"columna\" style=\"width:84px\"><input type=\"text\" class=\"caja\" onkeypress=\"_numero(event)\" id=\"montop"+i+"\" name=\"montop"+i+"\" style=\"width:80px;\" value=\""+monto+"\" readonly /></div>");
                             }else{
-                                out.print("<div class=\"columna\" style=\"width:84px;text-align:right;height:14px\">"+monto+" &nbsp;&nbsp;</div>"+
-                                "<div class=\"columna\" style=\"width:84px;padding-right:10px;height:14px\">"+num_formulario+" &nbsp;</div>");
+                                out.print("<div class=\"columna\" style=\"width:84px;text-align:right;height:14px\">"+monto+" &nbsp;&nbsp;</div>");
                             }
+                            out.print("<div class=\"columna\" style=\"width:84px;padding-right:10px;height:14px\"><input type=\"text\" class=\"texto\" id=\"numForm"+i+"\" name=\"numForm"+i+"\" style=\"width:80px\" value=\""+num_formulario+"\" readonly /></div>");
                             
                             out.print("<div class=\"columna\" style=\"width:25px\">");
                                 if(eliminado==0){
@@ -1127,7 +1126,7 @@ public class frmPlanMercadeo extends HttpServlet {
                     
                 String verBtn = (id.compareTo("-1")!=0 && modificar && objPlanMerca.existenActividades(id)) ? "visible" : "hidden";
                 if(mecanica_tipo.compareTo("o")==0){
-                    verBtn = (aprobada_operaciones==1 && plan_completo==0) ? "visible" : "hidden";
+                    verBtn = (estado==3 && aprobada_operaciones==1 && plan_completo==0) ? "visible" : "hidden";
                 }
                 out.print("<table width=\"100%\"><tr>");
                 out.print("<td><input type=\"hidden\" id=\"btnAutVer\" value=\""+verBtn+"\" />"
@@ -1135,11 +1134,11 @@ public class frmPlanMercadeo extends HttpServlet {
                 if(modificar){
                     out.print("<td align=\"center\"><input id=\"btnGrab\" type=\"submit\" value=\"Guardar Plan\" onclick=\"mer_verBtnAutorizacion(1);\" /> &nbsp; </td>");
                 }
-                /* 1=creados		2=rechazado marketing	3=aprobados operaciones		4=autorizacion marketing	
-                5=autorizacion ventas		6=autorizacion comercial	7=rechazado ventas	8=rechazado ventas
+                /* 1=creados		2=rechazado operaciones 	3=aprobados operaciones		4=autorizacion marketing	
+                5=autorizacion ventas		6=autorizacion comercial	7=rechazado marketing	8=rechazado ventas
                 9=terminados  10=Anulados*/
                 // 10=anulado se anula solo si esta en estado creado
-                if(id.compareTo("-1")!=0 && (estado==1 || estado==10) && numAuspiciosAutorizados==0 && plan_completo==0){  
+                if(id.compareTo("-1")!=0 && (estado==1 || estado==2 || estado==7 || estado==8) && numAuspiciosAutorizados==0 && plan_completo==0){  
                     out.print("<td align=\"right\"><input id=\"btnAnular\" type=\"button\" value=\"Anular Plan\" onclick=\"mer_mercadeoAnular();\" /> &nbsp; </td>");
                 }
                 //out.print("</div>");

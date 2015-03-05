@@ -318,7 +318,7 @@ public class frmPlanMercadeoGuardar extends HttpServlet {
                     rucs += request.getParameter("ruc"+i) + ",";
                     nomsCom += request.getParameter("nomCom"+i) + ",";
                     fechRegs += request.getParameter("fechReg"+i) + ",";
-                    montops += request.getParameter("montop"+i) + ",";
+                    montops += ( request.getParameter("montop"+i)!=null ? request.getParameter("montop"+i) : "" ) + ",";
                     numForms += request.getParameter("numForm"+i) + ",";
                 }
             }

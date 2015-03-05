@@ -1913,7 +1913,7 @@ function mer_setAuspicios()
 function mer_hayAuspicio(na, l)
 {
     for(i=0; i<l; i++){
-        if(_('fPrv'+i)!=null && _('numForm'+i)!=null){
+        if(_('fPrv'+i)!=null && _('montop'+i)!=null){
             if(_('numForm'+i).value == na){
                 return true;
             }
