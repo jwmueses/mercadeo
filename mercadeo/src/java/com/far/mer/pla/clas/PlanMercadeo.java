@@ -290,7 +290,7 @@ public class PlanMercadeo extends BaseDatos {
                             + "values( "+id_plan_mercadeo+", '"+ruc[i]+"', '"+nomCom[i]+"', '"+numForm[i]+"', "+montop[i]+", '"+fechReg[i]+"', dateadd(day, "+admin_tiempos_conf+", '"+fechReg[i]+"') );");
                     
                     // actualizo los auspicios la confirmacion y el estado
-                    sql2.add("update tbl_auspicio set tipo_confirmacion='"+auspicio_manual+"', estado='5' where num_auspicio='"+numForm[i]+"';");
+                    sql2.add("update tbl_auspicio set tipo_confirmacion='a', estado='5' where num_auspicio='"+numForm[i]+"';");
                 }
             }
             
@@ -445,10 +445,10 @@ public class PlanMercadeo extends BaseDatos {
 
         //  auspicios no estrategicos (proveedores) --------------------------------------------------------------------
         List sql2 = new ArrayList();
-        ResultSet rsProv = this.consulta("select id_plan_mercadeo, numero_idproveedor, eliminado, num_formulario "
+        ResultSet rsProv = this.consulta("select id_plan_mercadeo, numero_idproveedor, eliminado, num_formulario, monto "
                 + "from tbl_plan_mercadeo_proveedor "
                 + "where id_plan_mercadeo="+id_plan_mercadeo);
-        sql.add("update tbl_plan_mercadeo_proveedor set eliminado=1 where id_plan_mercadeo="+id_plan_mercadeo+";");
+        sql.add("update tbl_plan_mercadeo_proveedor set eliminado=1, monto=NULL where id_plan_mercadeo="+id_plan_mercadeo+";");
         if(this.getFilas(rsProv)>0){
             String matProv[][] = Matriz.ResultSetAMatriz(rsProv);
             String ruc[] = rucs.split(",");
@@ -458,37 +458,47 @@ public class PlanMercadeo extends BaseDatos {
             String numForm[] = numForms.split(",");
             if(montops.toLowerCase().compareTo("")!=0 && montops.toLowerCase().compareTo("null")!=0){
                 int pos = 0;
+                int pos1 = 0;
                 for(int i=0; i<ruc.length; i++){
-                    pos = this.enMatriz(matProv, numForm[i], 3);
+                    // todos los auspicios se habilitan
+                    sql2.add("update tbl_auspicio set tipo_confirmacion='"+auspicio_manual+"', estado='1' where num_auspicio='"+matProv[i][3]+"';");
+                    
+                    pos = this.enMatriz(matProv, numForm[i], montop[i], 3, 4);
                     if(pos==-1){
-                        if(matProv[i][2].compareTo("1")==0){
+                        pos1 = this.enMatriz(matProv, numForm[i], 3);
+                        if(pos1==-1){
                             sql.add("insert into tbl_plan_mercadeo_proveedor(id_plan_mercadeo, numero_idproveedor, nombre_comercial, num_formulario, monto, fecha_registro, plazo_confirmacion) "
                                 + "values( "+id_plan_mercadeo+", '"+ruc[i]+"', '"+nomCom[i]+"', '"+numForm[i]+"', "+montop[i]+", '"+fechReg[i]+"', dateadd(day, "+admin_tiempos_conf+", '"+fechReg[i]+"') );");
 
                             // actualizo en la base de auspicios
                             sql2.add("update tbl_auspicio set tipo_confirmacion='a', estado='5' where num_auspicio='"+numForm[i]+"';");
+                        }else{
+                            sql.add("update tbl_plan_mercadeo_proveedor set eliminado=0, nombre_comercial='"+nomCom[i]+"', monto="+montop[i]+
+                                " where id_plan_mercadeo="+id_plan_mercadeo+" and numero_idproveedor='"+ruc[i]+"' and num_formulario='"+numForm[i]+"'");
+                            // va a estado creado     1=creado; 2=anulado; 3=confirmado; 4=confirmado anulado; 5=abierto; 9=cerrado
+                            sql2.add("update tbl_auspicio set tipo_confirmacion='a', estado='5' where num_auspicio='"+numForm[i]+"';");
                         }
                     }else{
-                        if(matProv[pos][2].compareTo("1")==0 && montop[i].compareTo("")!=0 &&  montop[i].compareTo("null")!=0){
-                            sql.add("update tbl_plan_mercadeo_proveedor set eliminado=0, nombre_comercial='"+nomCom[i]+"', num_formulario='"+numForm[i]+"', monto="+montop[i]+
-                                " where id_plan_mercadeo="+id_plan_mercadeo+" and numero_idproveedor='"+ruc[i]+"'");
+                        if(matProv[pos][2].compareTo("0")==0 && montop[i].compareTo("")!=0 &&  montop[i].compareTo("null")!=0){
+                            sql.add("update tbl_plan_mercadeo_proveedor set eliminado=0, nombre_comercial='"+nomCom[i]+"', monto="+montop[i]+
+                                " where id_plan_mercadeo="+id_plan_mercadeo+" and numero_idproveedor='"+ruc[i]+"' and num_formulario='"+numForm[i]+"'");
                             // va a estado creado     1=creado; 2=anulado; 3=confirmado; 4=confirmado anulado; 5=abierto; 9=cerrado
                             sql2.add("update tbl_auspicio set tipo_confirmacion='a', estado='5' where num_auspicio='"+numForm[i]+"';");
                         }
                         
-                        if(matProv[pos][2].compareTo("0")==0 && montop[i].compareTo("")!=0 &&  montop[i].compareTo("null")!=0){
-                            sql.add("update tbl_plan_mercadeo_proveedor set eliminado=0, nombre_comercial='"+nomCom[i]+"', num_formulario='"+numForm[i]+"', monto="+montop[i]+
-                                " where id_plan_mercadeo="+id_plan_mercadeo+" and numero_idproveedor='"+ruc[i]+"'");
+                        /*if(matProv[pos][2].compareTo("1")==0 && montop[i].compareTo("")==0){
+                            //sql.add("update tbl_plan_mercadeo_proveedor set eliminado=0, nombre_comercial='"+nomCom[i]+"', monto="+montop[i]+
+                            //    " where id_plan_mercadeo="+id_plan_mercadeo+" and numero_idproveedor='"+ruc[i]+"' and num_formulario='"+numForm[i]+"'");
                             
                             // va a estado creado     1=creado; 2=anulado; 3=confirmado; 4=confirmado anulado; 5=abierto; 9=cerrado
                             sql2.add("update tbl_auspicio set tipo_confirmacion='"+auspicio_manual+"', estado='1' where num_auspicio='"+numForm[i]+"';");
-                        }
+                        }*/
                         
                     }
                 }
             }else{
                 for(int i=0; i<ruc.length; i++){
-                    sql2.add("update tbl_auspicio set estado='2' where num_auspicio='"+matProv[i][3]+"';");
+                    sql2.add("update tbl_auspicio set "+auspicio_manual+", estado='1' where num_auspicio='"+matProv[i][3]+"';");
                 }
             }
         }
@@ -708,6 +718,19 @@ public class PlanMercadeo extends BaseDatos {
         if(matriz!=null){
             for(int i=0; i<matriz.length; i++){
                 if(matriz[i][pos].compareTo(num_form)==0){
+                    return i;
+                }
+            }
+        }
+        return -1;
+    }
+    
+    public int enMatriz(String[][] matriz, String num_form, String montop, int pos, int pos1)
+    {
+        
+        if(matriz!=null){
+            for(int i=0; i<matriz.length; i++){
+                if(matriz[i][pos].compareTo(num_form)==0 && matriz[i][pos1].compareTo(montop)==0){
                     return i;
                 }
             }
