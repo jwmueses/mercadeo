@@ -498,7 +498,7 @@ public class PlanMercadeo extends BaseDatos {
                 }
             }else{
                 for(int i=0; i<ruc.length; i++){
-                    sql2.add("update tbl_auspicio set "+auspicio_manual+", estado='1' where num_auspicio='"+matProv[i][3]+"';");
+                    sql2.add("update tbl_auspicio set tipo_confirmacion='"+auspicio_manual+"', estado='1' where num_auspicio='"+matProv[i][3]+"';");
                 }
             }
         }
@@ -657,8 +657,11 @@ public class PlanMercadeo extends BaseDatos {
     }
     public ResultSet getProveedores(String id_plan_mercadeo)
     {
-        return this.consulta("select numero_idproveedor, nombre_comercial, num_formulario, monto, CONVERT(VARCHAR,fecha_registro, 103) as fecha_registro, confirmado, eliminado "
-                + "from tbl_plan_mercadeo_proveedor with (nolock) where id_plan_mercadeo="+id_plan_mercadeo+" order by eliminado, nombre_comercial;");
+        return this.consulta("select numero_idproveedor, nombre_comercial, num_formulario, monto, CONVERT(VARCHAR,fecha_registro, 103) as fecha_registro, confirmado, eliminado,"
+                + "case when auspicio_manual=1 then 'm' else 'a' end as auspicio_manual "
+                + "from (tbl_plan_mercadeo as P with(nolock) inner join tbl_plan_mercadeo_proveedor as PP with (nolock) on PP.id_plan_mercadeo=P.id_plan_mercadeo) "
+                + "inner join tbl_tipo_plan as T with(nolock) on T.id_tipo_plan=P.id_tipo_plan "
+                + " where id_plan_mercadeo="+id_plan_mercadeo+" order by eliminado, nombre_comercial;");
     }
     public ResultSet getAdjuntos(String id_plan_mercadeo)
     {
