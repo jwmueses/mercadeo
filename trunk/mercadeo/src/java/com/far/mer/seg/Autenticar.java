@@ -22,8 +22,8 @@ import javax.xml.ws.WebServiceRef;
 import org.tempuri.Wslogin;
 
 public class Autenticar extends HttpServlet {
-    //@WebServiceRef(wsdlLocation = "WEB-INF/wsdl/192.168.238.6/wsloginfarma/wslogin.asmx.wsdl")
-    //private Wslogin service;
+    @WebServiceRef(wsdlLocation = "WEB-INF/wsdl/192.168.238.6/wsloginfarma/wslogin.asmx.wsdl")
+    private Wslogin service;
 
     private String segu_ip = null;
     private int segu_puerto = 1433;
@@ -67,8 +67,8 @@ public class Autenticar extends HttpServlet {
         String clave = request.getParameter("clave");
         
         try{
-            //String ok = this.isAuthenticated(usuario, clave);
-            String ok = "OK";
+            String ok = this.isAuthenticated(usuario, clave);
+            //String ok = "OK";
             if(ok.toUpperCase().compareTo("OK")==0){
                 msg = "0";
                 String empleado = usuario;
@@ -139,9 +139,9 @@ public class Autenticar extends HttpServlet {
         }
     }
 
-    /*private String isAuthenticated(java.lang.String username, java.lang.String pwd) {
+    private String isAuthenticated(java.lang.String username, java.lang.String pwd) {
         org.tempuri.WsloginSoap port = service.getWsloginSoap();
         return port.isAuthenticated(username, pwd);
-    }*/
+    }
 
 }
