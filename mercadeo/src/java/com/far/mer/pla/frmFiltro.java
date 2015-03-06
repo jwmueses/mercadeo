@@ -174,7 +174,7 @@ public class frmFiltro extends HttpServlet {
                     ResultSet rsPlanesSegEjecucion = objBaseDatos.consulta("select distinct P.id_plan_mercadeo, P.plan_mercadeo "
                             + "from (tbl_plan_mercadeo as P with(nolock) inner join tbl_estrategia as E with(nolock) on P.id_plan_mercadeo=E.id_plan_mercadeo) "
                             + "inner join tbl_actividad as A with(nolock) on E.id_estrategia=A.id_estrategia "
-                            + "where A.usuario_eje='"+usuario+"' and A.eje_finalizada_fecha is null "
+                            + "where A.usuario_eje='"+usuario+"' and estado='6' and A.eje_finalizada_fecha is null "
                             + "order by P.plan_mercadeo");
                     out.print("obj»filtro^fun»mer_getActivicadesEjecucion()^frm»");
                     out.print("Planes de mercadeo: </td><td id=\"axIdPM1\">" + DatosDinamicos.combo(rsPlanesSegEjecucion, "idPMSegEje", "", "mer_getActivicadesEjecucion()", "Seleccione un Plan de Mercadeo", 260) );
