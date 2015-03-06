@@ -140,3 +140,6 @@ a.jm_tab:hover{background-color:#CDDAE4;border-color:#CCEBFF;}
 
 a.seleccion, a.seleccion:active, a.seleccion:hover{background-color:#FFFFFF;text-decoration:none;color:#000000}
 a.seleccion:hover{background-color:#D6E7F8;}
+
+.aumentar{width:340px;height:125px;}
+.reducir{width:340px;height:25px}
