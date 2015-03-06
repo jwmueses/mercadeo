@@ -656,6 +656,14 @@ D:/WARES/</description>
         <servlet-name>getPlanesMercadeoOficinasCombo</servlet-name>
         <servlet-class>com.far.mer.pla.getPlanesMercadeoOficinasCombo</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>tblActividadesEjecucion</servlet-name>
+        <servlet-class>com.far.mer.pla.tblActividadesEjecucion</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>tblActividadesEjecucionConfirmar</servlet-name>
+        <servlet-class>com.far.mer.pla.tblActividadesEjecucionConfirmar</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>Autenticar</servlet-name>
         <url-pattern>/Autenticar</url-pattern>
@@ -1035,6 +1043,14 @@ D:/WARES/</description>
     <servlet-mapping>
         <servlet-name>getPlanesMercadeoOficinasCombo</servlet-name>
         <url-pattern>/getPlanesMercadeoOficinasCombo</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>tblActividadesEjecucion</servlet-name>
+        <url-pattern>/tblActividadesEjecucion</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>tblActividadesEjecucionConfirmar</servlet-name>
+        <url-pattern>/tblActividadesEjecucionConfirmar</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>30</session-timeout>
