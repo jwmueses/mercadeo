@@ -2338,7 +2338,7 @@ function mer_ejecucion()
     encerar(true);
     Ajax.solicitud('frmFiltro', 'op=4', false, 'filtro');
     btn.icono(-722, -42, 42, 42, 'Marcar como realizadas', "mer_actividadesMarcRealizadas();", 'iconos', 'jmFPBT1');
-    setAnchoPanel(1, 650);
+    setAnchoPanel(1, 750);
     setAnchoPanel(3, 5);
 }
 function mer_getActivicadesEjecucion()

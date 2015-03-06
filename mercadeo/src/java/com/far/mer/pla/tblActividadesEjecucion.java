@@ -78,10 +78,10 @@ public class tblActividadesEjecucion extends HttpServlet {
                 out.print("<tr class=\"jm_fila_cab\">"
                         + "<th class=\"jm_TH\" width=\"250px\">ACTIVIDAD</th>"
                         + "<th class=\"jm_TH\" width=\"65px\">REALIZADA</th>"
-                        + "<th class=\"jm_TH\" width=\"250px\">COMENTARIO</th>"
+                        + "<th class=\"jm_TH\" width=\"350px\">COMENTARIO</th>"
                         + "</tr>"
                         + "</table>");
-                out.print("<div style=\"overflow:auto;width:610px;height:"+(altEdi-30)+"px;\">"
+                out.print("<div style=\"overflow:auto;width:710px;height:"+(altEdi-30)+"px;\">"
                         + "<table cellspacing=\"0\" cellpadding=\"2\" border=\"0\">");
                 while(rsAct.next()){
                     id_actividad = rsAct.getString("id_actividad")!=null ? rsAct.getString("id_actividad") : "";
@@ -94,7 +94,7 @@ public class tblActividadesEjecucion extends HttpServlet {
                             + "<input type=\"hidden\" id=\"usEje"+i+"\" name=\"usEje"+i+"\" value=\""+usuario_eje+"\" />"
                             + "<input type=\"hidden\" id=\"actividad"+i+"\" name=\"actividad"+i+"\" value=\""+actividad+"\" />"+actividad+"</td>");
                     out.print("<td width=\"65px\" align=\"center\"><input type=\"checkbox\" id=\"chIdAct"+i+"\" name=\"chIdAct"+i+"\" /></td>");
-                    out.print("<td width=\"250px\"><textarea id=\"comentario"+i+"\" name=\"comentario"+i+"\" style=\"width:240px;height:25px\"></textarea></td>");
+                    out.print("<td width=\"350px\"><textarea id=\"comentario"+i+"\" name=\"comentario"+i+"\" class=\"reducir\" onfocus=\"this.className='aumentar'\" onblur=\"this.className='reducir'\"></textarea></td>");
                     out.print("</tr>");
                     i++;
                 }
