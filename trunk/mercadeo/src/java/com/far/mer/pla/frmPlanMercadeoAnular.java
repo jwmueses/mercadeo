@@ -101,6 +101,7 @@ public class frmPlanMercadeoAnular extends HttpServlet {
             String nombre_comercial="";
             String num_formulario="";
             String monto="0";
+            String auspicio_manual="m";
             int confirmado=0;
             int eliminado=0;
             while(rsAusNoEstrategicos.next()){
@@ -110,9 +111,10 @@ public class frmPlanMercadeoAnular extends HttpServlet {
                 num_formulario = rsAusNoEstrategicos.getString("num_formulario")!=null ? rsAusNoEstrategicos.getString("num_formulario") : "";
                 confirmado = rsAusNoEstrategicos.getString("confirmado")!=null ? rsAusNoEstrategicos.getInt("confirmado") : 0;
                 eliminado = rsAusNoEstrategicos.getString("eliminado")!=null ? rsAusNoEstrategicos.getInt("eliminado") : 0;
+                auspicio_manual = rsAusNoEstrategicos.getString("auspicio_manual")!=null ? rsAusNoEstrategicos.getString("auspicio_manual") : "m";
                 if(eliminado==0){
                     // va a estado creado     1=creado; 2=anulado; 3=confirmado; 4=confirmado anulado; 5=abierto; 9=cerrado
-                    objAuspicio.ejecutar("update tbl_auspicio set estado='1' where num_auspicio='"+num_formulario+"';");
+                    objAuspicio.ejecutar("update tbl_auspicio set tipo_confirmacion='"+auspicio_manual+"', estado='1' where num_auspicio='"+num_formulario+"';");
                     if(confirmado==1){
                         noEstrategicos = false;
                         res = "msg»Existen laboratorios no estratégicos confirmados, se debe dar de baja la deuda en el CDP para poder continuar";
