@@ -387,8 +387,8 @@ public class Actividad extends BaseDatos {
                 String p_gasto = rs.getString("p_gasto")!=null ? rs.getString("p_gasto") : "0";
                 sql.add("update tbl_plan_mercadeo_farmacia set "
                         + "subtotal_12 = "+p_gasto+" * "+base_12+" / 100, "
-                        + "subtotal_0 = "+p_gasto+" * "+base_0+" / 100 "
-                        + "iva = "+p_gasto+" * "+iva+" / 100 "
+                        + "subtotal_0 = "+p_gasto+" * "+base_0+" / 100, "
+                        + "iva = "+p_gasto+" * "+iva+" / 100, "
                         + "gasto = "+p_gasto+" * "+total+" / 100 "
                         + "where id_plan_mercadeo="+id_plan_mercadeo+" and oficina='"+oficina+"';");
             }
