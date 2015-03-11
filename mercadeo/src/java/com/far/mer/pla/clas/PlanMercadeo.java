@@ -461,8 +461,9 @@ public class PlanMercadeo extends BaseDatos {
                 int pos1 = 0;
                 for(int i=0; i<ruc.length; i++){
                     // todos los auspicios se habilitan
-                    sql2.add("update tbl_auspicio set tipo_confirmacion='"+auspicio_manual+"', estado='1' where num_auspicio='"+matProv[i][3]+"';");
-                    
+                    if(i<matProv.length){
+                        sql2.add("update tbl_auspicio set tipo_confirmacion='"+auspicio_manual+"', estado='1' where num_auspicio='"+matProv[i][3]+"';");
+                    }
                     pos = this.enMatriz(matProv, numForm[i], montop[i], 3, 4);
                     if(pos==-1){
                         pos1 = this.enMatriz(matProv, numForm[i], 3);
