@@ -451,6 +451,7 @@ public class PlanMercadeo extends BaseDatos {
         sql.add("update tbl_plan_mercadeo_proveedor set eliminado=1, monto=NULL where id_plan_mercadeo="+id_plan_mercadeo+";");
         if(this.getFilas(rsProv)>0){
             String matProv[][] = Matriz.ResultSetAMatriz(rsProv);
+            int lMatProv = matProv.length;
             String ruc[] = rucs.split(",");
             String nomCom[] = nomsCom.split(",");
             String fechReg[] = fechRegs.split(",");
@@ -461,7 +462,7 @@ public class PlanMercadeo extends BaseDatos {
                 int pos1 = 0;
                 for(int i=0; i<ruc.length; i++){
                     // todos los auspicios se habilitan
-                    if(i<matProv.length){
+                    if(i<lMatProv){
                         sql2.add("update tbl_auspicio set tipo_confirmacion='"+auspicio_manual+"', estado='1' where num_auspicio='"+matProv[i][3]+"';");
                     }
                     pos = this.enMatriz(matProv, numForm[i], montop[i], 3, 4);
